@@ -4,12 +4,20 @@ import React, { useState } from "react";
 import SearchHeader from "./../components/searchHeader";
 import StoreCard from "./../components/storeCard";
 
+// Import Utils
+import {getSearchUrl} from "../utils/urlUtils";
+
 const Home = (props) => {
   const [searchItems, setSearchItems] = useState([]);
 
+  const handleSearchClick = (searchTerm) => {
+    console.log("Handling search click with search term: ", searchTerm);
+  }
+
+
   return (
     <div className="home-wrapper">
-      <SearchHeader />
+      <SearchHeader handleSearchClick={handleSearchClick}/>
       <div className="results-wrapper">
           <div className="best-price-wrapper">
               <div className="best-price-header">
