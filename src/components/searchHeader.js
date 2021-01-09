@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+
+import PlacesAutocomplete from "./placesAutocomplete";
 
 const SearchHeader = (props) => {
   let { handleSearchClick } = props;
@@ -8,9 +11,13 @@ const SearchHeader = (props) => {
   const [locationTerm, setLocationTerm] = useState("");
   const [isLocationExact, setIsLocationExact] = useState();
   const [userCoordinates, setUserCoordinates] = useState();
+
+  const [userAddress, setUserAddress] = useState();
+
   const [userCity, setUserCity] = useState();
   const [userState, setUserState] = useState();
-  
+
+  const [inputValue, setValue] = useState("");
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchTermEmpty, setIsSearchTermEmpty] = useState(true);
@@ -25,7 +32,7 @@ const SearchHeader = (props) => {
   const locateUser = (event) => {
     event.preventDefault();
 
-    if("geolocation" in navigator){
+    if ("geolocation" in navigator) {
       console.log("location is available");
 
       navigator.geolocation.getCurrentPosition((position) => {
@@ -34,15 +41,18 @@ const SearchHeader = (props) => {
 
         setIsLocationExact(true);
         setUserCoordinates([position.coords.latitude, position.coords.longitude]);
-        
-      })
+      });
     }
 
-    
-
-
     console.log("Locating User");
-  }
+  };
+
+  // const handleSelect = (address) => {
+  //   geocodeByAddress(address)
+  //     .then((results) => getLatLng(results[0]))
+  //     .then((latLng) => console.log("Success", latLng))
+  //     .catch((error) => console.error("Error", error));
+  // };
 
   useEffect(() => {
     console.log("Search term changed to: ", searchTerm);
@@ -89,20 +99,39 @@ const SearchHeader = (props) => {
         ) : (
           <div className="search-bar-wrapper">
             <form className="form-inline search-bar-form">
-              <button onClick={(event) => locateUser(event)} className="search-bar-button">
-                <span className="fas fa-location-arrow location-icon"></span>
-              </button>
-              <span className="search-header-text">{"  "}Locate Me</span>
-              <input
+              <div className="d-flex justify-content-center">
+                <div className="search-header-locate-me">
+                  <div className="d-flex">
+                    <button onClick={(event) => locateUser(event)} className="search-bar-button">
+                      <span className="fas fa-location-arrow location-icon"></span>
+                    </button>
+                    <span className="search-header-text locate-me-text">{"  "}Locate Me</span>
+                  </div>
+                </div>
+                <div className="search-header-find-place">
+                  <div className="d-flex">
+                    <GooglePlacesAutocomplete
+                      style={{ width: "200px" }}
+                      selectProps={{
+                        userAddress,
+                        onChange: setUserAddress,
+                      }}
+                    />
+                    <button type="submit" className="search-bar-button">
+                      <span className="fas fa-search search-bar-icon"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* <input
                 value={locationTerm}
                 onChange={(event) => setLocationTerm(event.target.value)}
                 type="text"
                 className="location-input"
                 placeholder="Search..."
-              ></input>
-              <button type="submit" className="search-bar-button">
-                <span className="fas fa-search search-bar-icon"></span>
-              </button>
+              ></input> */}
+              {/* <PlacesAutocomplete/> */}
             </form>
           </div>
         )}
