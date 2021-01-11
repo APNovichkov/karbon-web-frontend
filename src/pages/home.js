@@ -1,31 +1,43 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
 // Import components
 import SearchHeader from "./../components/searchHeader";
 import StoreCard from "./../components/storeCard";
 
 // Import Utils
-import {getSearchUrl} from "../utils/urlUtils";
+import { getSearchUrl } from "../utils/urlUtils";
 
 const Home = (props) => {
   const [searchItems, setSearchItems] = useState([]);
 
-  const handleSearchClick = (searchTerm) => {
+  const handleSearchClick = (searchTerm, userLat, userLong) => {
     console.log("Handling search click with search term: ", searchTerm);
-  }
 
+    axios.get(getSearchUrl(searchTerm, userLat, userLong)).then(res => {
+      console.log("Response from search: ", res.data);
+      setSearchItems(res.data.search_result);
+    })
+  };
 
   return (
     <div className="home-wrapper">
-      <SearchHeader handleSearchClick={handleSearchClick}/>
+      <SearchHeader handleSearchClick={handleSearchClick} />
       <div className="results-wrapper">
-          <div className="best-price-wrapper">
+        {searchItems.length > 0 ? (
+          <div>
+            <div className="best-price-wrapper">
               <div className="best-price-header">
-                  <span className="fas fa-tag"></span> Best Price
+                <span className="fas fa-tag"></span> Best Price
               </div>
+            </div>
+            {searchItems.map(item => (
+              <StoreCard productData={item}/>
+            ))}
           </div>
-        <StoreCard />
-        <StoreCard />
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

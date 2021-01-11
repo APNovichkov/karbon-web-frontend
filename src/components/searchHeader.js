@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-google-places-autocomplete";
 
 import PlacesAutocomplete from "./placesAutocomplete";
 
@@ -26,7 +26,21 @@ const SearchHeader = (props) => {
     event.preventDefault();
 
     console.log("Searching for term:", searchTerm);
-    handleSearchClick(searchTerm);
+    handleSearchClick(searchTerm, userCoordinates[0], userCoordinates[1]);
+  };
+
+  const selectLocationClick = (event) => {
+    event.preventDefault();
+
+    console.log("Selected address: ", userAddress);
+
+    geocodeByAddress(userAddress.label)
+      .then((results) => getLatLng(results[0]))
+      .then(({ lat, lng }) => {
+        console.log("Successfully got latitude and longitude", { lat, lng });
+        setUserCoordinates([lat, lng]);
+        setIsUserLocated(true);
+      });
   };
 
   const locateUser = (event) => {
@@ -46,13 +60,6 @@ const SearchHeader = (props) => {
 
     console.log("Locating User");
   };
-
-  // const handleSelect = (address) => {
-  //   geocodeByAddress(address)
-  //     .then((results) => getLatLng(results[0]))
-  //     .then((latLng) => console.log("Success", latLng))
-  //     .catch((error) => console.error("Error", error));
-  // };
 
   useEffect(() => {
     console.log("Search term changed to: ", searchTerm);
@@ -74,7 +81,7 @@ const SearchHeader = (props) => {
             <div className="search-header-text">
               Search for Products or Stores in{" "}
               <span className="bold-text green-text">
-                {userCity}, {userState}
+                {userAddress.label}
               </span>
             </div>
           ) : (
@@ -117,21 +124,12 @@ const SearchHeader = (props) => {
                         onChange: setUserAddress,
                       }}
                     />
-                    <button type="submit" className="search-bar-button">
+                    <button onClick={(event) => selectLocationClick(event)} className="search-bar-button">
                       <span className="fas fa-search search-bar-icon"></span>
                     </button>
                   </div>
                 </div>
               </div>
-
-              {/* <input
-                value={locationTerm}
-                onChange={(event) => setLocationTerm(event.target.value)}
-                type="text"
-                className="location-input"
-                placeholder="Search..."
-              ></input> */}
-              {/* <PlacesAutocomplete/> */}
             </form>
           </div>
         )}
