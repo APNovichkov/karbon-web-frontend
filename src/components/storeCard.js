@@ -8,17 +8,6 @@ import StoreCardTag from "./../components/storeCardTag";
 import { convertTime } from "./../utils/numUtils";
 import { getGMapsDirectionsUrl } from "./../utils/urlUtils";
 
-const SAMPLE_STORE = {
-  name: "Chevron",
-  address: "851 California St, San Francisco, CA 94598",
-  storeCoordinates: ["37.906310", "-122.063945"],
-  closingHour: "8PM",
-  isRecentlyInStock: true,
-  productName: "Apple iPhone Charger",
-  inStorePrice: 15.99,
-  originalPrice: 20.99,
-};
-
 const StoreCard = (props) => {
   let { productData, userAddress } = props;
 
@@ -40,7 +29,6 @@ const StoreCard = (props) => {
               </div>
               <div className="store-card-price-section">
                 <span className="store-card-in-store-price">${productData.in_store_price}</span> in-store price!{"  "}
-                <span className="store-card-original-price">(${productData.original_price})</span>
               </div>
               <div className="store-card-product-name">
                 In-store Product Name - "<span className="bold-text">{productData.product_name}"</span>

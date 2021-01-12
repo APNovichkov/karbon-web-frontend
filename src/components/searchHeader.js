@@ -11,19 +11,14 @@ const SearchHeader = (props) => {
   const [locationTerm, setLocationTerm] = useState("");
   const [isLocationExact, setIsLocationExact] = useState();
   const [userCoordinates, setUserCoordinates] = useState();
-
-  
   const [userAddress, setUserAddress] = useState();
-
-
   const [userCity, setUserCity] = useState();
   const [userState, setUserState] = useState();
 
-  const [inputValue, setValue] = useState("");
-
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchTermEmpty, setIsSearchTermEmpty] = useState(true);
-
+  
   const handleSubmitSearchTermClick = (event) => {
     event.preventDefault();
 
@@ -84,7 +79,7 @@ const SearchHeader = (props) => {
           {isUserLocated ? (
             <div className="search-header-text">
               Search for Products or Stores in{" "}
-              <span className="bold-text green-text">
+              <span className="bold-text green-color">
                 {userAddress.label}
               </span>
             </div>
@@ -129,7 +124,7 @@ const SearchHeader = (props) => {
                       }}
                     />
                     <button onClick={(event) => selectLocationClick(event)} className="search-bar-button">
-                      <span className="fas fa-search search-bar-icon"></span>
+                      <span className="fas fa-arrow-right search-bar-icon"></span>
                     </button>
                   </div>
                 </div>
