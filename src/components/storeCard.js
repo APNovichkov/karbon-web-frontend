@@ -4,6 +4,9 @@ import React from "react";
 import Map from "./../components/map";
 import StoreCardTag from "./../components/storeCardTag";
 
+// Import utils
+import {convertTime} from "./../utils/numUtils";
+
 const SAMPLE_STORE = {
   name: "Chevron",
   address: "851 California St, San Francisco, CA 94598",
@@ -31,7 +34,7 @@ const StoreCard = (props) => {
                 <StoreCardTag
                   iconClass={"far fa-clock"}
                   colorClass={"aqua-color"}
-                  text={`Open until ${productData.closing_hour}:00`}
+                  text={`Open until ${convertTime(productData.closing_hour)}`}
                 />
                 <StoreCardTag iconClass={"fas fa-shopping-bag"} colorClass={"blue-color"} text={`Recently in Stock`} />
               </div>
