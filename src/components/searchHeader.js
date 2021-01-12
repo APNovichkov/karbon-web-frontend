@@ -4,7 +4,7 @@ import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-goo
 import PlacesAutocomplete from "./placesAutocomplete";
 
 const SearchHeader = (props) => {
-  let { handleSearchClick } = props;
+  let { handleSearchClick, setHomeUserAddress } = props;
 
   // User Location Variables
   const [isUserLocated, setIsUserLocated] = useState(false);
@@ -12,7 +12,9 @@ const SearchHeader = (props) => {
   const [isLocationExact, setIsLocationExact] = useState();
   const [userCoordinates, setUserCoordinates] = useState();
 
+  
   const [userAddress, setUserAddress] = useState();
+
 
   const [userCity, setUserCity] = useState();
   const [userState, setUserState] = useState();
@@ -33,6 +35,8 @@ const SearchHeader = (props) => {
     event.preventDefault();
 
     console.log("Selected address: ", userAddress);
+
+    setHomeUserAddress(userAddress);
 
     geocodeByAddress(userAddress.label)
       .then((results) => getLatLng(results[0]))

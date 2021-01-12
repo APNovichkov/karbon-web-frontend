@@ -10,6 +10,8 @@ import { getSearchUrl } from "../utils/urlUtils";
 
 const Home = (props) => {
   const [searchItems, setSearchItems] = useState([]);
+  const [userAddress, setHomeUserAddress] = useState();
+
 
   const handleSearchClick = (searchTerm, userLat, userLong) => {
     console.log("Handling search click with search term: ", searchTerm);
@@ -22,7 +24,7 @@ const Home = (props) => {
 
   return (
     <div className="home-wrapper">
-      <SearchHeader handleSearchClick={handleSearchClick} />
+      <SearchHeader handleSearchClick={handleSearchClick} setHomeUserAddress={setHomeUserAddress}/>
       <div className="results-wrapper">
         {searchItems.length > 0 ? (
           <div>
@@ -32,7 +34,7 @@ const Home = (props) => {
               </div>
             </div>
             {searchItems.map(item => (
-              <StoreCard productData={item}/>
+              <StoreCard productData={item} userAddress={userAddress}/>
             ))}
           </div>
         ) : (

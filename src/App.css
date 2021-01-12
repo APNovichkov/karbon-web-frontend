@@ -107,10 +107,49 @@
   color: #ffffff;
 }
 
+.store-card-reserve-button:hover{
+  margin-top: 10px;
+  height: 34px;
+  width: 120px;
+  border: 1px solid #70cfbe;
+  border-radius: 10px;
+  background-color: #70cfbe;
+  color: #ffffff;
+}
+
 .store-card-map-wrapper{
   margin-right: 40px;
-
 }
+
+.store-card-directions-button{
+  margin-top: 10px;
+  height: 34px;
+  width: 120px;
+  border: 1px solid #759ce4;
+  border-radius: 10px;
+  background-color: #759ce4;
+  color: #ffffff;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.store-card-directions-button:hover{
+  margin-top: 10px;
+  height: 34px;
+  width: 120px;
+  border: 1px solid #90afe7;
+  border-radius: 10px;
+  background-color: #90afe7;
+  color: #ffffff;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: None;
+}
+
+
+
 
 /* STORE CARD TAG THINGS */
 
