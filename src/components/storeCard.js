@@ -5,8 +5,8 @@ import Map from "./../components/map";
 import StoreCardTag from "./../components/storeCardTag";
 
 // Import utils
-import {convertTime} from "./../utils/numUtils";
-import {getGMapsDirectionsUrl} from "./../utils/urlUtils";
+import { convertTime } from "./../utils/numUtils";
+import { getGMapsDirectionsUrl } from "./../utils/urlUtils";
 
 const SAMPLE_STORE = {
   name: "Chevron",
@@ -20,8 +20,7 @@ const SAMPLE_STORE = {
 };
 
 const StoreCard = (props) => {
-
-  let {productData, userAddress} = props;
+  let { productData, userAddress } = props;
 
   return (
     <div className="store-card-wrapper">
@@ -47,10 +46,16 @@ const StoreCard = (props) => {
                 In-store Product Name - "<span className="bold-text">{productData.product_name}"</span>
               </div>
               <div className="store-card-call-to-action-wrapper d-flex justify-content-left">
-                <button className="store-card-reserve-button">Reserve Now</button>
-                <a href={getGMapsDirectionsUrl(userAddress.label, productData.address)} className='store-card-directions-button text-center'>Directions{" "}<span className="fas fa-chevron-right"></span></a>
+                <a href={`tel:${productData.phone_number}`}>
+                  <button className="store-card-reserve-button">Reserve Now</button>{" "}
+                </a>
+                <a
+                  href={getGMapsDirectionsUrl(userAddress.label, productData.address)}
+                  className="store-card-directions-button text-center"
+                >
+                  Directions <span className="fas fa-chevron-right"></span>
+                </a>
               </div>
-              
             </div>
           </div>
           <div className="col-md-6 col-no-padding">
