@@ -43,12 +43,34 @@
 
 .best-price-wrapper {
   margin-top: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .best-price-header {
   color: #ffce00;
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.closest-result-wrapper{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.closest-result-header{
+  color: #4682f1;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.relevant-result-wrapper{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.relevant-result-header{
+  color: #fd7b11;
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -72,8 +94,14 @@
 
 .store-card-store-name {
   font-size: 23px;
-  color: #646464;
+  color: #272727;
   font-weight: 500;
+}
+
+.store-card-store-distance{
+  font-size: 23px;
+  color: #646464;
+  font-weight: 400;
 }
 
 .store-card-store-address {

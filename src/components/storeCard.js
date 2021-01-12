@@ -17,7 +17,7 @@ const StoreCard = (props) => {
         <div className="row">
           <div className="col-md-6 col-no-padding">
             <div className="store-card-text-wrapper">
-              <div className="store-card-store-name">{productData.store_name}</div>
+              <div className="store-card-store-name">{productData.store_name}<span className="store-card-store-distance">{"  "}({productData.distance_from_user} Miles)</span></div>
               <div className="store-card-store-address">{productData.address}</div>
               <div className="d-flex justify-content-left store-card-tags-wrapper">
                 <StoreCardTag
