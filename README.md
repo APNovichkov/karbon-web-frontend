@@ -1,12 +1,12 @@
 <div align="center">
-    <img alt="screenshot" src="public/assets/images/landing2-gif.gif">
+    <img alt="screenshot" src="public/assets/images/karbon-web.gif">
 </div>
 
 <div style="padding-top: 40px" align="center">
-    <h2>Welcome to Speedcode!</h2>
-    <a href="https://speedcode.dev.novichkov.dev">Live Project Link 🔗 </a>
+    <h2>Welcome to Karbon!</h2>
+    <a href="https://karbon-web.dev.novichkov.dev/">Live Project Link 🔗 </a>
 </div>
  
 <p align="center" style="margin-top: 20px;">
-Speedcode is a web platform that helps students and software engineers learn and memorize a large variety of popular algorithms and Data Structures. This codebase and the serverside codebase are maintained in a private organization. 
+Karbon is an ecommerce project that provides live inventory of local stores to users nearby and our chrome extension drives traffic directly from amazon to these local stores. This codebase, the serverside codebase and the chrome extension codebase are maintained in a private organization. 
 </p>
