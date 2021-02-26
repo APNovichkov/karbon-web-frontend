@@ -15,14 +15,15 @@ const SearchHeader = (props) => {
   const [userCity, setUserCity] = useState();
   const [userState, setUserState] = useState();
 
-  
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchTermEmpty, setIsSearchTermEmpty] = useState(true);
-  
+  const [searchClicked, setSearchClicked] = useState(false);
+
   const handleSubmitSearchTermClick = (event) => {
     event.preventDefault();
 
     console.log("Searching for term:", searchTerm);
+    setSearchClicked(true);
     handleSearchClick(searchTerm, userCoordinates[0], userCoordinates[1]);
   };
 
@@ -78,10 +79,7 @@ const SearchHeader = (props) => {
         <div className="search-header-text-wrapper">
           {isUserLocated ? (
             <div className="search-header-text">
-              Search for Products or Stores in{" "}
-              <span className="bold-text green-color">
-                {userAddress.label}
-              </span>
+              Search for Products or Stores in <span className="bold-text green-color">{userAddress.label}</span>
             </div>
           ) : (
             <div className="search-header-text">Where do you want to find Products or Stores?</div>
@@ -132,6 +130,19 @@ const SearchHeader = (props) => {
             </form>
           </div>
         )}
+      </div>
+
+      <div className="d-flex justify-content-center">
+
+        {!searchClicked && (isUserLocated ? (
+          <div className="under-development-warning">
+            Search <b>"iPhone Charger"</b> to see working version
+          </div>
+        ) : (
+          <div className="under-development-warning">
+            Search <b>"Moab, UT, USA"</b> to see working version
+          </div>
+        ))}
       </div>
     </div>
   );

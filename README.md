@@ -1,34 +1,12 @@
-# Welcome to Karbon Web
+<div align="center">
+    <img alt="screenshot" src="public/assets/images/landing2-gif.gif">
+</div>
 
-This is the react web frontend repository for Karbon, which is an ecommerce platform that provides live inventory of nearby local stores to users. Think of it as the **google maps for products**  
-
-**This project is not yet deployed**
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-
+<div style="padding-top: 40px" align="center">
+    <h2>Welcome to Speedcode!</h2>
+    <a href="https://speedcode.dev.novichkov.dev">Live Project Link 🔗 </a>
+</div>
+ 
+<p align="center" style="margin-top: 20px;">
+Speedcode is a web platform that helps students and software engineers learn and memorize a large variety of popular algorithms and Data Structures. This codebase and the serverside codebase are maintained in a private organization. 
+</p>

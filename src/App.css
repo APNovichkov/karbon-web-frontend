@@ -8,6 +8,18 @@
   padding: 0px;
 } */
 
+/* TMP THINGS*/
+
+.under-development-warning{
+  background-color: #fdd10e;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
 /* COLOR THINGS */
 
 .aqua-color {
