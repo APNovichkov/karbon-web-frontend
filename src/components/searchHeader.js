@@ -136,11 +136,11 @@ const SearchHeader = (props) => {
 
         {!searchClicked && (isUserLocated ? (
           <div className="under-development-warning">
-            Search <b>"iPhone Charger"</b> to see working version
+            Search <b>"Drill" or "1.5 Amp Battery" or "Saw"</b> to see working version
           </div>
         ) : (
           <div className="under-development-warning">
-            Search <b>"Moab, UT, USA"</b> to see working version
+            Search <b>"Walnut Creek, CA, USA"</b> to see working version
           </div>
         ))}
       </div>
