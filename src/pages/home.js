@@ -1,22 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // Import components
 import SearchHeader from "./../components/searchHeader";
 import StoreCard from "./../components/storeCard";
+import LoadingResults from "./../components/loadingResults";
+import BestPriceSection from "./../components/bestPriceSection";
+import ClosestResultSection from "./../components/closestResultSection";
+import RelevantResultSection from "./../components/mostRelevantSection";
+import Sidebar from "./../components/sidebar";
 
 // Import Utils
 import { getSearchUrl } from "../utils/urlUtils";
 
-const Home = (props) => {
-  const [searchItems, setSearchItems] = useState([]);
+const handleOnScroll = (event, setSidebarCoordinates) => {
+  // console.log("Position Y: ", window.scrollY);
 
+  setSidebarCoordinates(window.scrollY);
+}
+
+const Home = (props) => {
+  // API results
   const [relevantResult, setRelevantResult] = useState([]);
   const [bestPriceResult, setBestPriceResult] = useState([]);
   const [closestResult, setClosestResult] = useState([]);
 
+  // User parameters
   const [userAddress, setHomeUserAddress] = useState();
+
+  // Page Functionality
   const [isLoadingResults, setIsLoadingResults] = useState(false);
+  const [toShowResults, setToShowResults] = useState(false);
+  const [resultToShow, setResultToShow] = useState("");
+  const [sidebarCoordinates, setSidebarCoordinates] = useState();
 
   const handleSearchClick = (searchTerm, userLat, userLong) => {
     console.log("Handling search click with search term: ", searchTerm);
@@ -31,64 +47,61 @@ const Home = (props) => {
       setClosestResult(res.data.closest_result);
 
       setIsLoadingResults(false);
+      setToShowResults(true);
     });
   };
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", (event) => handleOnScroll(event, setSidebarCoordinates)) 
+
+    
+
+    return () => window.removeEventListener("scroll", (event) => handleOnScroll(event, setSidebarCoordinates))
+  }, [])
+
+  
 
   return (
     <div className="home-wrapper">
       <SearchHeader handleSearchClick={handleSearchClick} setHomeUserAddress={setHomeUserAddress} />
 
-      {isLoadingResults && (
-        <div className="loading-results-wrapper text-center">
-          <img src="/assets/images/logo48.png" className="loading-karbon-logo" id="karbon-logo" />
-        </div>
-      )}
-      {!isLoadingResults && (
-        <div className="results-wrapper">
-          {bestPriceResult.length > 0 ? (
-            <div>
-              <div className="best-price-wrapper">
-                <div className="best-price-header">
-                  <span className="fas fa-tag"></span> Best Price
-                </div>
-              </div>
-              {bestPriceResult.map((item) => (
-                <StoreCard productData={item} userAddress={userAddress} />
-              ))}
+      {isLoadingResults && <LoadingResults />}
+
+      <div onScroll={handleOnScroll} className="home-content-wrapper">
+        {toShowResults && (
+          <div className="row">
+            <div className="col-xl-3">
+              <Sidebar setResultToShow={setResultToShow} sidebarCoordinates={sidebarCoordinates}/>
             </div>
-          ) : (
-            <div></div>
-          )}
-          {bestPriceResult.length > 0 ? (
-            <div>
-              <div className="closest-result-wrapper">
-                <div className="closest-result-header">
-                  <span className="fas fa-map-marked-alt"></span> Closest Location
-                </div>
+            <div className="col-xl-9">
+              <div className="results-wrapper">
+                {resultToShow == "bestprice" && (
+                  <div>
+                    {bestPriceResult.length > 0 && (
+                      <BestPriceSection bestPriceResult={bestPriceResult} userAddress={userAddress} />
+                    )}
+                  </div>
+                )}
+                {resultToShow == "closestlocation" && (
+                  <div>
+                    {closestResult.length > 0 && (
+                      <ClosestResultSection closestResult={closestResult} userAddress={userAddress} />
+                    )}
+                  </div>
+                )}
+                {resultToShow == "relevant" && (
+                  <div>
+                    {relevantResult.length > 0 && (
+                      <RelevantResultSection relevantResult={relevantResult} userAddress={userAddress} />
+                    )}
+                  </div>
+                )}
               </div>
-              {closestResult.map((item) => (
-                <StoreCard productData={item} userAddress={userAddress} />
-              ))}
             </div>
-          ) : (
-            <div></div>
-          )}
-          {relevantResult.length > 0 ? (
-            <div>
-              <div className="relevant-result-wrapper">
-                <div className="relevant-result-header">
-                  <span className="far fa-thumbs-up"></span> Most Relevant
-                </div>
-              </div>
-              {relevantResult.map((item) => (
-                <StoreCard productData={item} userAddress={userAddress} />
-              ))}
-            </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
