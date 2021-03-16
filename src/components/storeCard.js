@@ -5,6 +5,7 @@ import Map from "./../components/map";
 import StoreCardTag from "./../components/storeCardTag";
 
 // Import utils
+import {formatPrice} from "./../utils/stringUtils";
 import { convertTime } from "./../utils/numUtils";
 import { getGMapsDirectionsUrl } from "./../utils/urlUtils";
 
