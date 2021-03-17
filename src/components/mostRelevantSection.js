@@ -8,13 +8,10 @@ const MostRelevantSection = (props) => {
   return (
     <div>
       <div className="relevant-result-wrapper">
-        {/* <div className="relevant-result-header">
-          <span className="far fa-thumbs-up"></span> Most Relevant
-        </div> */}
+        {relevantResult.map((item) => (
+          <StoreCard productData={item} userAddress={userAddress} />
+        ))}
       </div>
-      {relevantResult.map((item) => (
-        <StoreCard productData={item} userAddress={userAddress} />
-      ))}
     </div>
   );
 };

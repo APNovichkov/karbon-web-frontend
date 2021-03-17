@@ -10,7 +10,7 @@ const Sidebar = (props) => {
     const [toSetPositionFixed, setToSetPositionFixed] = useState("false");
 
     useEffect(() => {
-        if(sidebarCoordinates >= 290) {
+        if(sidebarCoordinates >= 290 && window.innerWidth >= 1200) {
             setToSetPositionFixed(true)
         }else{
             setToSetPositionFixed(false);
