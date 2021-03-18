@@ -62,7 +62,7 @@
 }
 
 .best-price-wrapper {
-  margin-top: 50px;
+  padding-top: 50px;
   margin-bottom: 20px;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .closest-result-wrapper{
-  margin-top: 50px;
+  padding-top: 50px;
   margin-bottom: 20px;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .relevant-result-wrapper{
-  margin-top: 50px;
+  padding-top: 50px;
   margin-bottom: 20px;
 }
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const NUM_ITEMS_PER_PAGE = 10
 
 const Pagination = (props) => {
-    let {productsLength, setStartingIndex, setEndingIndex} = props;
+    let {productsLength, setStartingIndex, setEndingIndex, setToScrollToTop} = props;
 
     const [paginationArray, setPaginationArray] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,6 +15,10 @@ const Pagination = (props) => {
         setEndingIndex(pageItem.indexEnd)
 
         setCurrentIndex(pageItem.index-1);
+
+        if (currentIndex != pageItem.index-1){
+            setToScrollToTop(true);
+        }
     }
 
     useEffect(() => {

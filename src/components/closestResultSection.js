@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // Import Components
 import StoreCard from "./storeCard";
+import Pagination from "./pagination";
 
 const ClosestResultSection = (props) => {
   let { closestResult, userAddress } = props;
 
+  const [startingIndex, setStartingIndex] = useState(0);
+  const [endingIndex, setEndingIndex] = useState(10);
+  const [toScrollToTop, setToScrollToTop] = useState(false);
+
+  // Scrolling to bottom
+  const scrollToTopRef = useRef(null);
+  const scrollToTop = () => {
+    if (toScrollToTop == true) {
+      scrollToTopRef.current.scrollIntoView({ behavior: "smooth" });
+      setToScrollToTop(false);
+    }
+  };
+  useEffect(scrollToTop, [toScrollToTop]);
+
   return (
     <div>
+      <div ref={scrollToTopRef}></div>
       <div className="closest-result-wrapper">
-        {/* <div className="closest-result-header">
-          <span className="fas fa-map-marked-alt"></span> Closest Location
-        </div> */}
+        {closestResult.slice(startingIndex, endingIndex).map((item) => (
+          <StoreCard productData={item} userAddress={userAddress} />
+        ))}
       </div>
-      {closestResult.map((item) => (
-        <StoreCard productData={item} userAddress={userAddress} />
-      ))}
+
+      <Pagination
+        productsLength={closestResult.length}
+        setStartingIndex={setStartingIndex}
+        setEndingIndex={setEndingIndex}
+        setToScrollToTop={setToScrollToTop}
+      />
     </div>
   );
 };

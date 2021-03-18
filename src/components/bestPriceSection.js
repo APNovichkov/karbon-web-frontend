@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // Import components
 import StoreCard from "./storeCard";
@@ -9,9 +9,21 @@ const BestPriceSection = (props) => {
 
   const [startingIndex, setStartingIndex] = useState(0);
   const [endingIndex, setEndingIndex] = useState(10);
+  const [toScrollToTop, setToScrollToTop] = useState(false);
+
+  // Scrolling to bottom
+  const scrollToTopRef = useRef(null);
+  const scrollToTop = () => {
+    if (toScrollToTop == true) {
+      scrollToTopRef.current.scrollIntoView({ behavior: "smooth" });
+      setToScrollToTop(false);
+    }
+  };
+  useEffect(scrollToTop, [toScrollToTop]);
 
   return (
     <div>
+      <div ref={scrollToTopRef}></div>
       <div className="best-price-wrapper">
         {bestPriceResult.slice(startingIndex, endingIndex).map((item) => (
           <StoreCard productData={item} userAddress={userAddress} />
@@ -22,6 +34,7 @@ const BestPriceSection = (props) => {
         productsLength={bestPriceResult.length}
         setStartingIndex={setStartingIndex}
         setEndingIndex={setEndingIndex}
+        setToScrollToTop={setToScrollToTop}
       />
     </div>
   );
