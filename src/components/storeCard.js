@@ -49,7 +49,7 @@ const StoreCard = (props) => {
           </div>
           <div className="col-md-6 col-no-padding">
             <div className="store-card-map-wrapper">
-              <Map storeCoordinates={productData.store_coordinates} storeName={productData.store_name} />
+              <Map storeCoordinates={productData.store_coordinates_string} storeName={productData.store_name} />
             </div>
           </div>
         </div>
